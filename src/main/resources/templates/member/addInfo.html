@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="/js/addInfo.js"></script>
+</head>
+<body>
+<form action="/member/addInfo" method="post">
+    <input type="text" id="memberNickname" name="memberNickname" placeholder="닉네임" onkeyup="nicknameDuplicateCheck()">
+    <p id="nicknameDuplicate"></p>
+
+    <input type="text" id="memberPhone" name="memberPhone" placeholder="핸드폰 번호" onkeyup="pnCheck()">
+    <p id="pnOut"></p>
+
+    <input type="text" name="memberAddress" placeholder="주소" >
+    <input type="submit" value="추가 정보 입력">
+</form>
+</body>
+</html>
