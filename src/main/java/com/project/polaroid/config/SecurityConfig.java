@@ -1,5 +1,7 @@
 package com.project.polaroid.config;
 
+import com.project.polaroid.auth.AccessDenied;
+import com.project.polaroid.auth.AuthenticationDenied;
 import com.project.polaroid.auth.FailHandler;
 import com.project.polaroid.oauth.PrincipalOauth2UserService;
 import com.project.polaroid.auth.SuccessHandler;
@@ -31,6 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        http.exceptionHandling()
+                        .authenticationEntryPoint(new AuthenticationDenied())
+                                .accessDeniedHandler(new AccessDenied());
         http.authorizeRequests()
                 .antMatchers("/member/**").authenticated() // 유저페이지 인증(로그인)
                 .antMatchers("/seller/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')") // 판매자 권한

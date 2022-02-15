@@ -96,6 +96,7 @@ public class IndexController {
     @PostMapping("/join")
     public String join(MemberEntity member){
         memberService.memberSave(member);
+        sendCode=UUID.randomUUID().toString();
         return "redirect:/login";
     }
 
@@ -126,6 +127,12 @@ public class IndexController {
         indexService.updatePassword(password,memberId);
 
         return "login";
+    }
+
+    // 권한없을때
+    @GetMapping("/accessDenied")
+    public String accessDenied(){
+        return "accessDenied";
     }
 
     // 권한 테스트
