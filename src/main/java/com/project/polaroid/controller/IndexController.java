@@ -47,7 +47,7 @@ public class IndexController {
         code+=numIndex;
         sendCode=code;
 
-        System.out.println("테스트용 나중에 삭제 key = " + code);
+        System.out.println("확인용 나중에 삭제 key = " + code);
 
         message.setSubject("Polaroid 인증번호 입력을 위한 메일 전송");
         message.setText("인증 번호 : "+code);
@@ -117,6 +117,7 @@ public class IndexController {
         message.setTo(mail); // 인증코드 받들 사용자 메일 주소
 
         String password = UUID.randomUUID().toString();;
+        System.out.println("확인용 나중에 삭제 password = " + password);
 
         message.setSubject("Polaroid 비밀번호 변경");
         message.setText("변경된 비밀번호 : "+password);

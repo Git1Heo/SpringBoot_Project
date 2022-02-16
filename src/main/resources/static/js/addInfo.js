@@ -137,7 +137,6 @@ function joinSubmit(){
     if(name=='GOOD' && addresst=='GOOD' && phone=="GOOD")
         joinForm.submit();
     else {
-        checkResult.style.color = "red"
-        checkResult.innerText = "항목들이 제대로 기입이 됬는지 확인해주세요"
+
     }
 }
