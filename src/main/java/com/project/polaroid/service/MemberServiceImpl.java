@@ -58,4 +58,10 @@ public class MemberServiceImpl implements MemberService{
         else
             return "no";
     }
+
+    // 멤버 정보 (마이페이지)
+    @Override
+    public MemberEntity findById(Long memberId) {
+        return (memberRepository.findById(memberId)).get();
+    }
 }

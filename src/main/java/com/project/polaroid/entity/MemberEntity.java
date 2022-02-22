@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -49,6 +51,14 @@ public class MemberEntity {
 
     @Column(length = 30)
     private String  memberCheckmail;
+
+    // 팔로우 테이블
+    @OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
+    private List<FollowEntity> followEntityList = new ArrayList<>();
+
+    // 판매자 권한 테이블
+    @OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
+    private List<SellerEntity> sellerEntityList = new ArrayList<>();
 
     @Builder
     public MemberEntity(String memberEmail, String memberPw, String memberFilename, String memberRole, String memberProvider, String memberProviderId) {
