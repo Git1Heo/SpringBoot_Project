@@ -64,4 +64,5 @@ public class MemberServiceImpl implements MemberService{
     public MemberEntity findById(Long memberId) {
         return (memberRepository.findById(memberId)).get();
     }
+
 }

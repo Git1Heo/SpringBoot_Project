@@ -19,4 +19,5 @@ public interface MemberService {
 
     // 멤버 정보 (마이페이지)
     MemberEntity findById(Long memberId);
+
 }

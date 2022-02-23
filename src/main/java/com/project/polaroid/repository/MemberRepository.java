@@ -21,7 +21,8 @@ public interface MemberRepository extends JpaRepository <MemberEntity,Long> {
     @Query("update MemberEntity p set p.memberPw = :memberPw where p.id = :id")
     void updateMember(String memberPw,Long id);
 
-
-
-
+    // 판매자 권한 부여
+    @Modifying
+    @Query("update MemberEntity p set p.memberRole = 'ROLE_SELLER' where p.id = :memberId")
+    void giveRole(Long memberId);
 }

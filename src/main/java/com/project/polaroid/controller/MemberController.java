@@ -49,7 +49,7 @@ public class MemberController {
         System.out.println(followCount.get(1));
         model.addAttribute("follower",followCount.get(0));
         model.addAttribute("following",followCount.get(1));
-        return "member/my-page";
+        return "member/myPage";
     }
 
     // 판매자 권한신청
