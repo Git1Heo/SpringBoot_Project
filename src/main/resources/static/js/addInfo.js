@@ -132,8 +132,6 @@ function joinSubmit(){
     const addresst=document.getElementById("addressOut").innerText
     const phone=document.getElementById("pnOut").innerText
 
-    const checkResult = document.getElementById('joinOut');
-
     if(name=='GOOD' && addresst=='GOOD' && phone=="GOOD")
         joinForm.submit();
     else {

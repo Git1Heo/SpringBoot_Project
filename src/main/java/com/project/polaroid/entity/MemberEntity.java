@@ -1,5 +1,6 @@
 package com.project.polaroid.entity;
 
+import com.project.polaroid.dto.MemberUpdateDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -68,6 +69,15 @@ public class MemberEntity {
         this.memberRole = memberRole;
         this.memberProvider = memberProvider;
         this.memberProviderId = memberProviderId;
+    }
+
+    public static MemberEntity UpdateDTOtoEntity(MemberUpdateDTO memberUpdateDTO){
+        MemberEntity member=new MemberEntity();
+        member.setMemberFilename(memberUpdateDTO.getMemberFilename());
+        member.setMemberAddress(memberUpdateDTO.getMemberAddress());
+        member.setMemberNickname(memberUpdateDTO.getMemberNickname());
+        member.setMemberPhone(memberUpdateDTO.getMemberPhone());
+        return member;
     }
 
 

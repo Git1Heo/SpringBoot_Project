@@ -129,7 +129,7 @@ public class IndexController {
 
             // 비밀번호 변경
             Long memberId = member.getId();
-            indexService.updatePassword(password, memberId);
+            indexService.lostPassword(password, memberId);
 
             result="<script>alert('등록된 이메일을 확인해 주세요.');location.href='login'</script>";
         }

@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-프로필 <img th:src="@{|/profile/${member.memberFilename}|}" alt=""> <br>
+프로필 <img th:src="@{|/image/profile/${member.memberFilename}|}" alt=""> <br>
 닉네임 <p th:text="${member.memberNickname}">  </p>
 팔로워 <p th:text="${follower}">  </p>
 팔로잉 <p th:text="${following}">  </p>

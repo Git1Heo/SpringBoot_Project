@@ -1,13 +1,17 @@
 package com.project.polaroid.service;
 
 import com.project.polaroid.dto.MemberAddInfo;
+import com.project.polaroid.dto.MemberUpdateDTO;
 import com.project.polaroid.entity.MemberEntity;
 import com.project.polaroid.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.File;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +67,35 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public MemberEntity findById(Long memberId) {
         return (memberRepository.findById(memberId)).get();
+    }
+
+    // 회원정보 변경
+    @Override
+    @Transactional
+    public void memberUpdate(MemberUpdateDTO member, Long memberId) throws Exception{
+        if (!member.getMemberFile().isEmpty()) {
+            MultipartFile file = member.getMemberFile();
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid + "_" + file.getOriginalFilename();
+
+            String filePath = System.getProperty("user.dir") + "/src/main/resources/static/image/profile";
+
+            File saveFile = new File(filePath, fileName);
+            file.transferTo(saveFile);
+
+            member.setMemberFilename(fileName);
+        }
+        else{
+            member.setMemberFilename("defaultProfile");
+        }
+        MemberEntity memberEntity=MemberEntity.UpdateDTOtoEntity(member);
+        memberRepository.memberUpdate(memberEntity.getMemberAddress(),memberEntity.getMemberPhone(),memberEntity.getMemberNickname(),memberEntity.getMemberFilename(),memberId);
+    }
+
+    // 회원탈퇴 처리
+    @Override
+    public void memberResign(Long id) {
+        memberRepository.deleteById(id);
     }
 
 }
