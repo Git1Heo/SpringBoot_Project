@@ -62,13 +62,14 @@ public class MemberEntity {
     private List<SellerEntity> sellerEntityList = new ArrayList<>();
 
     @Builder
-    public MemberEntity(String memberEmail, String memberPw, String memberFilename, String memberRole, String memberProvider, String memberProviderId) {
+    public MemberEntity(String memberEmail, String memberPw, String memberFilename, String memberRole, String memberProvider, String memberProviderId, String memberCheckmail) {
         this.memberEmail = memberEmail;
         this.memberPw = memberPw;
         this.memberFilename = memberFilename;
         this.memberRole = memberRole;
         this.memberProvider = memberProvider;
         this.memberProviderId = memberProviderId;
+        this.memberCheckmail = memberCheckmail;
     }
 
     public static MemberEntity UpdateDTOtoEntity(MemberUpdateDTO memberUpdateDTO){

@@ -150,7 +150,7 @@ public class MemberController {
     @PostMapping("/resign")
     public String memberResign(@AuthenticationPrincipal PrincipalDetails principalDetails){
         memberService.memberResign(principalDetails.getMember().getId());
-        return "logout";
+        return "redirect:http://localhost:8081/logout";
     }
 
 }
