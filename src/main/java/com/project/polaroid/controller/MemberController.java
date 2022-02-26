@@ -3,6 +3,7 @@ package com.project.polaroid.controller;
 import com.project.polaroid.auth.PrincipalDetails;
 import com.project.polaroid.dto.MemberAddInfo;
 import com.project.polaroid.dto.MemberUpdateDTO;
+import com.project.polaroid.entity.FollowEntity;
 import com.project.polaroid.entity.MemberEntity;
 import com.project.polaroid.service.FollowService;
 import com.project.polaroid.service.MemberService;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -151,6 +153,24 @@ public class MemberController {
     public String memberResign(@AuthenticationPrincipal PrincipalDetails principalDetails){
         memberService.memberResign(principalDetails.getMember().getId());
         return "redirect:http://localhost:8081/logout";
+    }
+
+    // 팔로우 팔로잉 리스트 페이지
+    @GetMapping("/followList")
+    public String followList(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model){
+        MemberEntity member=memberService.findById(principalDetails.getMember().getId());
+        model.addAttribute("member",member);
+        ArrayList<Integer> followCount=followService.followCount(principalDetails.getMember().getId());
+        // 팔로윙 리스트
+        model.addAttribute("followingList",followService.followingList(principalDetails.getMember().getId()));
+        // 팔로우 리스트
+        model.addAttribute("followerList",followService.followerList(principalDetails.getMember().getId()));
+        System.out.println("MemberController.mypageForm");
+        System.out.println(followCount.get(0));
+        System.out.println(followCount.get(1));
+        model.addAttribute("follower",followCount.get(0));
+        model.addAttribute("following",followCount.get(1));
+        return "member/followList";
     }
 
 }

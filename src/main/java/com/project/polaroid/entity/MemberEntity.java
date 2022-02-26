@@ -19,7 +19,7 @@ public class MemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "memberId")
+    @Column (name = "member_id")
     private Long id;
 
     @Column(unique = true, length = 50)
@@ -55,7 +55,10 @@ public class MemberEntity {
 
     // 팔로우 테이블
     @OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
-    private List<FollowEntity> followEntityList = new ArrayList<>();
+    private List<FollowEntity> followEntityList1 = new ArrayList<>();
+
+    @OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
+    private List<FollowEntity> followEntityList2 = new ArrayList<>();
 
     // 판매자 권한 테이블
     @OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)

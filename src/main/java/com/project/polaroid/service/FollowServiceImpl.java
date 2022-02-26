@@ -1,11 +1,13 @@
 package com.project.polaroid.service;
 
+import com.project.polaroid.entity.FollowEntity;
 import com.project.polaroid.repository.FollowRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,5 +26,19 @@ public class FollowServiceImpl implements FollowService{
         followCount.add(follower);
         followCount.add(following);
         return followCount;
+    }
+
+    // 팔로윙 리스트
+    @Override
+    @Transactional
+    public List<FollowEntity> followingList(Long memberId) {
+        return followRepository.findByFollowFollowing(memberId);
+    }
+
+    // 팔로우 리스트
+    @Override
+    @Transactional
+    public List<FollowEntity> followerList(Long memberId) {
+        return followRepository.findByMemberId(memberId);
     }
 }
