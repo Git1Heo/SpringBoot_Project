@@ -17,11 +17,13 @@ public class FollowEntity {
     @Column (name = "follow_id")
     private Long followId;
 
+    // 팔로잉수
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "follow_following")
     private MemberEntity followFollowing;
 
+    // 팔로워수
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private MemberEntity memberId;
+    private MemberEntity followMember;
 }

@@ -32,13 +32,13 @@ public class FollowServiceImpl implements FollowService{
     @Override
     @Transactional
     public List<FollowEntity> followingList(Long memberId) {
-        return followRepository.findByFollowFollowing(memberId);
+        return followRepository.following(memberId);
     }
 
     // 팔로우 리스트
     @Override
     @Transactional
     public List<FollowEntity> followerList(Long memberId) {
-        return followRepository.findByMemberId(memberId);
+        return followRepository.follower(memberId);
     }
 }

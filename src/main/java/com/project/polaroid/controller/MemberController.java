@@ -161,10 +161,12 @@ public class MemberController {
         MemberEntity member=memberService.findById(principalDetails.getMember().getId());
         model.addAttribute("member",member);
         ArrayList<Integer> followCount=followService.followCount(principalDetails.getMember().getId());
+
         // 팔로윙 리스트
         model.addAttribute("followingList",followService.followingList(principalDetails.getMember().getId()));
         // 팔로우 리스트
         model.addAttribute("followerList",followService.followerList(principalDetails.getMember().getId()));
+
         System.out.println("MemberController.mypageForm");
         System.out.println(followCount.get(0));
         System.out.println(followCount.get(1));

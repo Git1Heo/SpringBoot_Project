@@ -21,8 +21,8 @@
     </thead>
     <tbody>
     <tr th:each="followingList: ${followingList}">
-        <td th:text="${followingList.memberId.memberFilename}"></td>
-        <td th:text="${followingList.memberId.memberNickname}"></td>
+        <td th:text="${followingList.followFollowing.memberFilename}"></td>
+        <td th:text="${followingList.followFollowing.memberNickname}"></td>
     </tr>
     </tbody>
 </table>
@@ -36,9 +36,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="followingList: ${followingList}">
-        <td th:text="${followingList.memberId.memberFilename}"></td>
-        <td th:text="${followingList.memberId.memberNickname}"></td>
+    <tr th:each="followerList: ${followerList}">
+        <td th:text="${followerList.memberId.memberFilename}"></td>
+        <td th:text="${followerList.memberId.memberNickname}"></td>
     </tr>
     </tbody>
 </table>
