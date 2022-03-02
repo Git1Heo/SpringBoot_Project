@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService{
     public void memberSave(MemberEntity member) {
         member.setMemberRole("ROLE_MEMBER");
         // 회원 프로필 기본화
-        member.setMemberFilename("defaultProfile");
+        member.setMemberFilename("user_default.png");
         // 세줄 패스워드 암호화 과정
         String rawPassword=member.getMemberPw();
         String encPassword=bCryptPasswordEncoder.encode(rawPassword);
@@ -86,7 +86,7 @@ public class MemberServiceImpl implements MemberService{
             member.setMemberFilename(fileName);
         }
         else{
-            member.setMemberFilename("defaultProfile");
+            member.setMemberFilename("user_default.png");
         }
         MemberEntity memberEntity=MemberEntity.UpdateDTOtoEntity(member);
         memberRepository.memberUpdate(memberEntity.getMemberAddress(),memberEntity.getMemberPhone(),memberEntity.getMemberNickname(),memberEntity.getMemberFilename(),memberId);
