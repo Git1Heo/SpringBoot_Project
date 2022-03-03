@@ -28,7 +28,9 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
 
         HttpSession session= request.getSession();
         MemberEntity member =memberRepository.findByMemberEmail(authentication.getName());
+
         session.setAttribute("LoginEmail", authentication.getName());
+        session.setAttribute("LoginId", member.getId());
 
         if(member.getMemberPhone() == null) {
             response.sendRedirect("/member/addInfo");

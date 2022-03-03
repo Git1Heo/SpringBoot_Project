@@ -230,8 +230,9 @@ function pw2check(){
     }
 }
 
-// 핸드폰 번호 체요
+// 핸드폰 번호 체크
 function pnCheck(){
+    $("#memberPhone").attr("value",$("#frontPhone option:selected").val() + "" + $("#backPhone").val());
     const exp = /^(?=.*\d)[\d]{11}$/;
     const phone = document.getElementById('memberPhone').value;
     const checkResult = document.getElementById('pnOut');
@@ -291,4 +292,22 @@ function joinSubmit() {
 
         }
     }
+
+    function addInfo(){
+
+    nicknameDuplicateCheck();
+    pnCheck();
+    address();
+
+    const name=document.getElementById("nicknameDuplicate").innerText
+    const addresst=document.getElementById("addressOut").innerText
+    const phone=document.getElementById("pnOut").innerText
+
+    if(name=='GOOD' && addresst=='GOOD' && phone=="GOOD")
+        joinForm.submit();
+    else {
+
+    }
+}
+
 
