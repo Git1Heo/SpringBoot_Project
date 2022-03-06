@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
+<script>
+    function follow(){
+        let my=document.getElementById("myId").value;
+        let your=document.getElementById("yourId").value;
+        console.log(my);
+        console.log(your);
+        let uu="followAdd"
+        console.log(uu)
+        $.ajax({
+            type: 'post',
+            url:uu,
+            data:{"myId" : my,"yourId" : your},
+            success : function (result){
+                console.log("success");
+                console.log(result);
+                alert(result);
+            },
+            error : function (){
+                console.log("error")
+                alert("오류")
+            }
+
+        });
+    }
+</script>
 <body>
 프로필 <img th:src="@{|/image/profile/${member.memberFilename}|}" alt=""> <br>
 닉네임 <p th:text="${member.memberNickname}">  </p>
@@ -34,5 +60,8 @@
     <button><a href="sellerRole"> 판매자 신청 </a> </button>
 </div>
 
+<input type="text" id="myId">
+<input type="text" id="yourId">
+<button type="button" id="followButton" onclick="follow()">ddd</button>
 </body>
 </html>

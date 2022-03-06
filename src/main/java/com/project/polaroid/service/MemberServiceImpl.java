@@ -98,4 +98,10 @@ public class MemberServiceImpl implements MemberService{
         memberRepository.deleteById(id);
     }
 
+    // 채팅 발신자 정보
+    @Override
+    public MemberEntity findByNickname(String sender) {
+        return memberRepository.findByMemberNickname(sender);
+    }
+
 }

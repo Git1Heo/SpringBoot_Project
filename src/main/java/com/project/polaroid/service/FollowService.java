@@ -1,5 +1,6 @@
 package com.project.polaroid.service;
 
+import com.project.polaroid.dto.FollowAddDTO;
 import com.project.polaroid.entity.FollowEntity;
 
 import java.util.ArrayList;
@@ -16,4 +17,7 @@ public interface FollowService {
 
     // 팔로워 리스트
     List<FollowEntity> followerList(Long memberId);
+
+    // 팔로우 추가
+    String followAdd(FollowAddDTO followAdd);
 }

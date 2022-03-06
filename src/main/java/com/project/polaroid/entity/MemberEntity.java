@@ -54,11 +54,10 @@ public class MemberEntity {
     private String  memberCheckmail;
 
     // 팔로우 테이블
-    @OneToMany(mappedBy = "followFollowing", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
-    private List<FollowEntity> memberFollowing = new ArrayList<>();
-
-    @OneToMany(mappedBy = "followMember", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
-    private List<FollowEntity> memberFollower = new ArrayList<>();
+    @OneToMany(mappedBy = "followMy", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
+    private List<FollowEntity> memberFollowMy = new ArrayList<>();
+    @OneToMany(mappedBy = "followYour", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
+    private List<FollowEntity> memberFollowYour = new ArrayList<>();
 
     // 판매자 권한 테이블
     @OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)

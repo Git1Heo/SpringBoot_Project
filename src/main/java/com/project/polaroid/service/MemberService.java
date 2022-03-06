@@ -26,4 +26,7 @@ public interface MemberService {
 
     // 회원탈퇴 처리
     void memberResign(Long id);
+
+    // 채팅 발신자 정보
+    MemberEntity findByNickname(String sender);
 }
