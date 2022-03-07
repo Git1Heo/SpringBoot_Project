@@ -20,4 +20,7 @@ public interface FollowService {
 
     // 팔로우 추가
     String followAdd(FollowAddDTO followAdd);
+
+    // 팔로우 취소
+    String followDelete(FollowAddDTO followAdd);
 }

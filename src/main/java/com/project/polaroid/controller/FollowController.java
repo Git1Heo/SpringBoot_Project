@@ -17,10 +17,13 @@ public class FollowController {
 
     @PostMapping("/member/followAdd")
     public @ResponseBody String followAdd(@ModelAttribute FollowAddDTO followAdd){
-        System.out.println("FollowController.followAdd");
-        System.out.println("followAdd = " + followAdd);
         String result=followService.followAdd(followAdd);
-        System.out.println("result = " + result);
+        return result;
+    }
+
+    @PostMapping("/member/followCancel")
+    public @ResponseBody String followCancel(@ModelAttribute FollowAddDTO followAdd){
+        String result=followService.followDelete(followAdd);
         return result;
     }
 }

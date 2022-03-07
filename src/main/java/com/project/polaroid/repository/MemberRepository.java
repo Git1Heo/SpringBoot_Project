@@ -31,4 +31,8 @@ public interface MemberRepository extends JpaRepository <MemberEntity,Long> {
     @Query("update MemberEntity p set p.memberAddress = :memberAddress  , p.memberPhone = :memberPhone , p.memberNickname = :memberNickname, p.memberFilename= :memberFilename where p.id = :id")
     void memberUpdate(String memberAddress, String memberPhone, String memberNickname, String memberFilename, Long id);
 
+    // 알람
+    @Modifying
+    @Query("update MemberEntity p set  p.memberMessage = :messageCount where p.id = :memberId")
+    void addCount(Long memberId, int messageCount);
 }

@@ -104,4 +104,11 @@ public class MemberServiceImpl implements MemberService{
         return memberRepository.findByMemberNickname(sender);
     }
 
+    // 알람
+    @Override
+    @Transactional
+    public void addCount(Long memberId, int messageCount) {
+        memberRepository.addCount(memberId,messageCount);
+    }
+
 }

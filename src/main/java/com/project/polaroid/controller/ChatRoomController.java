@@ -6,6 +6,7 @@ import com.project.polaroid.entity.ChatMessageEntity;
 import com.project.polaroid.entity.ChatRoomEntity;
 import com.project.polaroid.entity.ChatRoomJoinEntity;
 import com.project.polaroid.entity.MemberEntity;
+import com.project.polaroid.service.ChatMessageService;
 import com.project.polaroid.service.ChatRoomJoinService;
 import com.project.polaroid.service.ChatRoomService;
 import com.project.polaroid.service.MemberService;
@@ -26,6 +27,7 @@ public class ChatRoomController {
     private final MemberService memberService;
     private final ChatRoomJoinService chatRoomJoinService;
     private final ChatRoomService chatRoomService;
+    private final ChatMessageService chatMessageService;
 
     // 닉네임 체크
     @GetMapping("/users/nameChk/{name}")
@@ -78,6 +80,7 @@ public class ChatRoomController {
         model.addAttribute("nickname",principalDetails.getMember().getMemberNickname());
         model.addAttribute("chatRoomId",chatRoomId);
 
+        chatMessageService.deleteCount(chatRoomId,principalDetails.getMember().getId());
         int cnt = 0;
         List<ChatRoomJoinEntity> list = chatRoomJoinService.findByChatRoom(chatRoom);
         for(ChatRoomJoinEntity join : list){

@@ -29,4 +29,7 @@ public interface MemberService {
 
     // 채팅 발신자 정보
     MemberEntity findByNickname(String sender);
+
+    // 알람
+    void addCount(Long memberId, int messageCount);
 }

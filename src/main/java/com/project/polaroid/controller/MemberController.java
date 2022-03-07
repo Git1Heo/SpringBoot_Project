@@ -3,8 +3,10 @@ package com.project.polaroid.controller;
 import com.project.polaroid.auth.PrincipalDetails;
 import com.project.polaroid.dto.MemberAddInfo;
 import com.project.polaroid.dto.MemberUpdateDTO;
-import com.project.polaroid.entity.FollowEntity;
 import com.project.polaroid.entity.MemberEntity;
+import com.project.polaroid.repository.MemberRepository;
+import com.project.polaroid.repository.NoticeRepository;
+import com.project.polaroid.service.ChatMessageService;
 import com.project.polaroid.service.FollowService;
 import com.project.polaroid.service.MemberService;
 import com.project.polaroid.service.SellerRoleService;
@@ -31,6 +33,8 @@ public class MemberController {
     private final FollowService followService;
     private final SellerRoleService sellerRoleService;
     private final JavaMailSender javaMailSender;
+    private final NoticeRepository noticeRepository;
+    private final ChatMessageService chatMessageService;
 
 
     @GetMapping("/addInfo")
@@ -50,14 +54,16 @@ public class MemberController {
     // 마이페이지 출력 (팔로워 수, 내 정보)
     @GetMapping("/mypage")
     public String mypageForm(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model){
+
+        // 알림 처리
+        notice(principalDetails.getMember().getId());
+
         MemberEntity member=memberService.findById(principalDetails.getMember().getId());
         model.addAttribute("member",member);
         ArrayList<Integer> followCount=followService.followCount(principalDetails.getMember().getId());
-        System.out.println("MemberController.mypageForm");
-        System.out.println(followCount.get(0));
-        System.out.println(followCount.get(1));
         model.addAttribute("follower",followCount.get(0));
         model.addAttribute("following",followCount.get(1));
+
         return "member/myPage";
     }
 
@@ -167,12 +173,18 @@ public class MemberController {
         // 팔로우 리스트
         model.addAttribute("followerList",followService.followerList(principalDetails.getMember().getId()));
 
-        System.out.println("MemberController.mypageForm");
-        System.out.println(followCount.get(0));
-        System.out.println(followCount.get(1));
         model.addAttribute("follower",followCount.get(0));
         model.addAttribute("following",followCount.get(1));
         return "member/followList";
+    }
+
+    // 알림 처리
+    public void notice(Long memberId){
+        System.out.println("memberId = " + memberId);
+        System.out.println("MemberController.notice");
+        int messageCount = chatMessageService.count(memberId);
+        System.out.println("messageCount = " + messageCount);
+        memberService.addCount(memberId,messageCount);
     }
 
 }

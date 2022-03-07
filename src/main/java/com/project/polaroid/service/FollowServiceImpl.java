@@ -59,4 +59,14 @@ public class FollowServiceImpl implements FollowService{
         }
     }
 
+    // 팔로우 삭제
+    @Override
+    @Transactional
+    public String followDelete(FollowAddDTO followAddDTO){
+        Long myId=followAddDTO.getMyId();
+        Long yourId=followAddDTO.getYourId();
+        followRepository.deleteFollow(myId,yourId);
+        return "삭제 되었습니다.";
+    }
+
 }

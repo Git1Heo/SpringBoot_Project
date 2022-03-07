@@ -53,6 +53,12 @@ public class MemberEntity {
     @Column(length = 30)
     private String  memberCheckmail;
 
+    @Column
+    private int memberMessage;
+
+    @Column
+    private int memberFollow;
+
     // 팔로우 테이블
     @OneToMany(mappedBy = "followMy", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
     private List<FollowEntity> memberFollowMy = new ArrayList<>();

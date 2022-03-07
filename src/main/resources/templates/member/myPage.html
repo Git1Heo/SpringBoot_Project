@@ -9,21 +9,33 @@
     function follow(){
         let my=document.getElementById("myId").value;
         let your=document.getElementById("yourId").value;
-        console.log(my);
-        console.log(your);
-        let uu="followAdd"
-        console.log(uu)
+
         $.ajax({
             type: 'post',
-            url:uu,
+            url:'/member/followAdd',
             data:{"myId" : my,"yourId" : your},
             success : function (result){
-                console.log("success");
-                console.log(result);
                 alert(result);
             },
             error : function (){
-                console.log("error")
+                alert("오류")
+            }
+
+        });
+    }
+
+    function followCancel(){
+        let my=document.getElementById("myId").value;
+        let your=document.getElementById("yourId").value;
+
+        $.ajax({
+            type: 'post',
+            url:'/member/followCancel',
+            data:{"myId" : my,"yourId" : your},
+            success : function (result){
+                alert(result);
+            },
+            error : function (){
                 alert("오류")
             }
 
@@ -35,6 +47,10 @@
 닉네임 <p th:text="${member.memberNickname}">  </p>
 팔로워 <p th:text="${follower}">  </p>
 팔로잉 <p th:text="${following}">  </p>
+
+<!-- 알람표시 -->
+메시지 노티스 <p th:text="${member.memberMessage}"></p>
+팔로우 노티스 <p th:text="${member.memberFollow}"></p>
 
 <div th:if="${member.memberRole=='ROLE_SELLER'}">
     <p>판매자</p>
@@ -60,8 +76,11 @@
     <button><a href="sellerRole"> 판매자 신청 </a> </button>
 </div>
 
+팔로우 하기 기능
 <input type="text" id="myId">
 <input type="text" id="yourId">
-<button type="button" id="followButton" onclick="follow()">ddd</button>
+<button type="button" id="followButton" onclick="follow()">add</button>
+<button type="button" id="followCancelButton" onclick="followCancel()">cancel</button>
+
 </body>
 </html>
